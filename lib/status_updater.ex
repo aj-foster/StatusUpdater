@@ -3,17 +3,13 @@ defmodule StatusUpdater do
   Documentation for StatusUpdater.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> StatusUpdater.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def test do
+    url = "https://slack.com/api/users.profile.set"
+    token = Application.get_env(:status_updater, :token)
+    body = {:form, [{"profile", "{\"status_text\":\"Testing\"}"}, {"token", token}]}
+    headers = [{"Content-Type", "application/x-www-form-urlencoded"}]
+    
+    HTTPoison.post(url, body, headers)
   end
   
   
