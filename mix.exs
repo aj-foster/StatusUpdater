@@ -8,7 +8,10 @@ defmodule StatusUpdater.Mixfile do
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       deps: deps(),
-      escript: [main_module: StatusUpdater]
+      escript: [
+        main_module: StatusUpdater,
+        name: "status"
+      ]
     ]
   end
 
