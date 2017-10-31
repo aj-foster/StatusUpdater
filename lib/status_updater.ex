@@ -14,6 +14,6 @@ defmodule StatusUpdater do
   
   
   def main (args) do
-    IO.puts("Hello, cruel world")
+    test()
   end
 end
