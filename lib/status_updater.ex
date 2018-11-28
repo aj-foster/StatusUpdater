@@ -5,7 +5,6 @@ defmodule StatusUpdater do
   status message and emoji.
   """
 
-
   @doc """
   Entrypoint for the escript binary.
 
@@ -13,7 +12,10 @@ defmodule StatusUpdater do
   containing strings representing the arguments passed to the binary. Using
   these arguments, it will delegate to update/2 to call the Slack API.
   """
-  def main (args) do
+  @spec main(list()) ::
+          {:ok, HTTPoison.Response.t() | HTTPoison.AsyncResponse.t()}
+          | {:error, HTTPoison.Error.t()}
+  def main(args) do
     args
     |> Enum.at(0)
     |> case do
@@ -28,16 +30,25 @@ defmodule StatusUpdater do
     end
   end
 
-
   @doc """
   Calls the Slack API to update the configured user's status.
 
   Which user is updated depends on the token placed in `config.exs`.
   """
+  @spec update(String.t(), String.t()) ::
+          {:ok, HTTPoison.Response.t() | HTTPoison.AsyncResponse.t()}
+          | {:error, HTTPoison.Error.t()}
   def update(text, emoji \\ "") do
     url = "https://slack.com/api/users.profile.set"
     token = Application.get_env(:status_updater, :token)
-    body = {:form, [{"profile", "{\"status_text\":\"#{text}\",\"status_emoji\":\"#{emoji}\"}"}, {"token", token}]}
+
+    body =
+      {:form,
+       [
+         {"profile", "{\"status_text\":\"#{text}\",\"status_emoji\":\"#{emoji}\"}"},
+         {"token", token}
+       ]}
+
     headers = [{"Content-Type", "application/x-www-form-urlencoded"}]
 
     HTTPoison.post(url, body, headers)

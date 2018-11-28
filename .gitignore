@@ -21,3 +21,6 @@ erl_crash.dump
 
 # Ignore the generated binary
 status
+
+# ElixirLS files
+/.elixir_ls/
