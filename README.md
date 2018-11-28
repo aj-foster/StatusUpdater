@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. First, add your Slack token to `config.exs`.
+1. First, add your Slack token to `config.exs`. It should have the form `xoxp-...`.
 2. For now, install by running
     ```
     mix escript.build
@@ -12,18 +12,9 @@
 
 This should create a binary `status` which can be run to execute a "Testing" status update.
 
-<!-- If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `status_updater` to your list of dependencies in `mix.exs`:
+3. Optionally, create a symbolic link to the binary in `/usr/local/bin` or another directory in your `$PATH`.
 
-```elixir
-def deps do
-  [
-    {:status_updater, "~> 0.1.0"}
-  ]
-end
-```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/status_updater](https://hexdocs.pm/status_updater).
- -->
+## Customization
+
+You can create customized preset statuses in `lib/status_updater.ex` by modifying the `case` statement in the `main/1` function.
