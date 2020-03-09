@@ -6,7 +6,7 @@ defmodule StatusUpdater.Mixfile do
       app: :status_updater,
       version: "0.1.0",
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       escript: [
         main_module: StatusUpdater,
@@ -25,8 +25,8 @@ defmodule StatusUpdater.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.1"}
+      {:httpoison, "~> 1.6"},
+      {:poison, "~> 4.0"}
     ]
   end
 end

@@ -52,5 +52,12 @@ defmodule StatusUpdater do
     headers = [{"Content-Type", "application/x-www-form-urlencoded"}]
 
     HTTPoison.post(url, body, headers)
+    |> case do
+      {:ok, %HTTPoison.Response{status_code: 200}} ->
+        :ok
+
+      error ->
+        IO.inspect(error)
+    end
   end
 end
