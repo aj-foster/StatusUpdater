@@ -24,3 +24,6 @@ status
 
 # ElixirLS files
 /.elixir_ls/
+
+# Local configuration file
+/config/config.exs
